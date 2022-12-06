@@ -1,0 +1,40 @@
+{% extends "leaderSignUp/base.html" %}
+
+{% block content %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Trail Life</h1>
+                            <span class="subheading"> Troop KS-0001 Upcoming Events & Volunteer Opportunities</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>   
+       
+
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
+                    {% for event in event_list %}
+                    <div class="post-preview">
+                        <a href="{% url 'events' event.id %}">
+                            <h2 class="post-title"> {{ event.title }} </h2>
+                            <h3 class="post-subtitle">{{event.description}}</h3>
+                        </a>
+                        <p class="post-meta">
+                           {{event.eventType}}: {{event.start}}
+                        </p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>      
+                
+                    
+{% endblock %}
+
