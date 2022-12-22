@@ -61,3 +61,6 @@ class subEvent(models.Model):
 
     def __str__(self):
         return f"{self.group} {self.event_parent}"
+
+class Sample(models.Model):
+    attachment = models.FileField()
