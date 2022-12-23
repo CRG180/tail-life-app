@@ -34,6 +34,7 @@ ALLOWED_HOSTS.extend(
 )
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
