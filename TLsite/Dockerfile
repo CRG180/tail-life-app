@@ -16,14 +16,12 @@ apk del .tmp-deps && \
 adduser --disabled-password --no-create-home TLsite_user && \
 mkdir -p /vol/web/static && \
 mkdir -p /vol/web/media && \
-mkdir -p /vol/web/static/leaderSignUp && \
-chown -R TLsite_user:TLsite_user /vol && \
+chown -R root:root /vol && \
 chmod -R 775 /vol && \
-chmod -R 755 /vol/web/static/leaderSignUp && \
 chmod -R +x /scripts
 
 ENV PATH="/scripts:/py/bin:$PATH"
 
-USER TLsite_user
+USER root
 
 CMD ["run.sh"]
