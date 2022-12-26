@@ -1,0 +1,32 @@
+{% extends "auth_user/base.html" %}
+
+{% block content %}
+
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+        <br>
+        <h1>Trail Life Troop KS-0001</h1>
+        <p>This site is designed to faciliate trailguide administrative tasks such as,
+            event creation, leader sign up, and other simular tasks. 
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+            <p> {{ form.as_p }} </p>
+            <p><input type="submit"  value="submit" class = "btn btn-primary"></p>
+        </form>
+        {% if request.get_full_path == "/auth/login/" %}
+        <p>Not registred yet?
+        <a href="{% url 'register_view' %}">Trail guide app
+             registration</a></p>
+        {% elif request.get_full_path == "/auth/register/" %}
+        <p>Already registred?
+         <a href="{% url 'login_view' %}">Trail guide app
+             login</a></p>
+        {% endif %}
+</div>
+    </div>
+        </div>
+
+{% endblock %}

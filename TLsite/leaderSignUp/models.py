@@ -41,8 +41,10 @@ class event(models.Model):
     description = models.CharField(max_length=1000, blank=True,null = True)
     start = models.DateTimeField('Event start time')
     end = models.DateTimeField('Event end time')
-    primary_leader = models.ForeignKey(trailGuideLeader, on_delete=models.RESTRICT, related_name='leader')
-    alternate_leader = models.ForeignKey(trailGuideLeader, on_delete=models.RESTRICT, related_name='alternate_leader')
+    primary_leader = models.ForeignKey(trailGuideLeader, on_delete=models.RESTRICT,
+                related_name='leader',blank=True, null = True)
+    alternate_leader = models.ForeignKey(trailGuideLeader, on_delete=models.RESTRICT,
+         related_name='alternate_leader', blank=True, null = True)
     
     def __str__(self):
         return f"{self.title}"

@@ -5,6 +5,7 @@ from leaderSignUp.views import eventView
 from leaderSignUp.views import subEventView
 from django.conf.urls.static import static
 from django.conf import settings
+
 urlpatterns = [
     path('', indexView, name = 'index'),
     path('events/<int:event_id>/',eventView, name = 'events'),
