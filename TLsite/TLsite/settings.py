@@ -39,6 +39,7 @@ ALLOWED_HOSTS.extend(
 
 INSTALLED_APPS = [
     'leaderSignUp.apps.LeadersignupConfig',
+    'auth_user.apps.AuthUserConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -112,6 +113,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL = "/auth_user/login"
+LOGIN_REDIRECT_URL ="/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
