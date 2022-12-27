@@ -1,0 +1,39 @@
+{% extends "leaderSignUp/base.html" %}
+
+{% block content %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1> {{ user.get_full_name }}'s Events</h1>
+                            <span class="subheading"> Your upcoming volunteer commitments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>   
+
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
+                    {% for event in sub_events %}
+                    <div class="post-preview">
+                        <a href="{% url 'subEvents' event.id %}">
+                        <h3> {{ event.event_parent }} </h3>
+                        <p> <b>Event Date:</b> {{ event.event_parent.start }}</p>
+                        <p><b>Woodlands Group:</b> {{ event.group }}</p>
+                        <p><b>Trailguide Leader:</b> {{ event.primary_leader}}</p>
+                        <p><b>Assistant Trailguide Leader:</b> {{ event.alternate_leader}}</p>
+                        
+                    </div>
+                        {% endfor %}
+                    </p>
+                    
+                </div>
+            </div>
+        </div>      
+                    
+{% endblock %}  

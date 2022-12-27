@@ -1,8 +1,15 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from leaderSignUp.models import trailGuideLeader
 
 non_allowed_usernames = ['abc']
 # check for unique email & username
+
+
+class trailGuideProfile(forms.ModelForm):
+    class Meta:
+        model = trailGuideLeader
+        fields = ['phone_number']
 
 User = get_user_model()
 
@@ -11,6 +18,16 @@ class RegisterForm(forms.Form):
         attrs={
         "class": "form-control"
     }))
+    first_name = forms.CharField(widget=forms.TextInput(
+        attrs={
+        "class": "form-control"
+    }))
+
+    last_name = forms.CharField(widget=forms.TextInput(
+        attrs={
+        "class": "form-control"
+    }))
+
     email = forms.EmailField(widget=forms.TextInput(
         attrs={
         "class": "form-control"
