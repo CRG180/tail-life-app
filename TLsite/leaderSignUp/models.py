@@ -69,7 +69,7 @@ class subEvent(models.Model):
                                         on_delete=models.SET_NULL, 
                                         related_name='alternate_leader_sub_event', 
                                         blank = True,null = True)
-    group = models.ForeignKey(group, on_delete=models.CASCADE)
+    group = models.ForeignKey(group,on_delete=models.CASCADE, blank=True, null = True)
 
     def __str__(self):
         return f"{self.group} {self.event_parent}"

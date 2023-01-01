@@ -25,7 +25,7 @@
                     {% for event in sub_event %}
                     <div class="post-preview">
                         <a href="{% url 'subEvents' event.id %}">
-                        <h3> {{ event.group }} </h3>
+                        <h3> {{ event }} </h3>
                         <p><b>Trailguide Leader:</b> {{ event.primary_leader}}</p>
                         <p><b>Assistant Trailguide Leader:</b> {{ event.alternate_leader}}</p>
                     </div>

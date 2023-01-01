@@ -25,9 +25,11 @@
                         <h3> {{ event.event_parent }} </h3>
                         <p> <b>Event Date:</b> {{ event.event_parent.start }}</p>
                         <p><b>Woodlands Group:</b> {{ event.group }}</p>
+                        {% if event.primary_leader.id == user.id%}
                         <p><b>Trailguide Leader:</b> {{ event.primary_leader}}</p>
+                        {% elif event.alternate_leader.id == user.id%}
                         <p><b>Assistant Trailguide Leader:</b> {{ event.alternate_leader}}</p>
-                        
+                        {% endif %}
                     </div>
                         {% endfor %}
                     </p>
