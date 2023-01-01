@@ -7,8 +7,8 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
-                            <h1> {{ event.title }} </h1>
-                            <span class="subheading"> {{ event.start }} </span>
+                            <h1> {{ user.get_full_name }}'s Events</h1>
+                            <span class="subheading"> Your upcoming volunteer commitments</span>
                         </div>
                     </div>
                 </div>
@@ -18,18 +18,22 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
-                    <p>Select a wooodlands group to volunteer as a trailguide or assistant trailguide.
-                        During the event revist this link to sumbit attendance.
-                    </p>
                     <!-- Post preview-->
-                    {% for event in sub_event %}
+                    {% for event in sub_events %}
                     <div class="post-preview">
                         <a href="{% url 'subEvents' event.id %}">
-                        <h3> {{ event }} </h3>
+                        <h3> {{ event.event_parent }} </h3>
+                        <p> <b>Event Date:</b> {{ event.event_parent.start }}</p>
+                        <p><b>Woodlands Group:</b> {{ event.group }}</p>
+                        {% if event.primary_leader.id == user.id%}
                         <p><b>Trailguide Leader:</b> {{ event.primary_leader}}</p>
+                        {% elif event.alternate_leader.id == user.id%}
                         <p><b>Assistant Trailguide Leader:</b> {{ event.alternate_leader}}</p>
+                        {% endif %}
                     </div>
-                     {% endfor %}
+                        {% endfor %}
+                    </p>
+                    
                 </div>
             </div>
         </div>      

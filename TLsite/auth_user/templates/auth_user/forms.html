@@ -18,11 +18,11 @@
         </form>
         {% if request.get_full_path == "/auth/login/" %}
         <p>Not registred yet?
-        <a href="{% url 'register_view' %}">Trail guide app
+        <a href="{% url 'register_view' %}">Trailguide app
              registration</a></p>
-        {% elif request.get_full_path == "/auth/register/" %}
+        {% else %}
         <p>Already registred?
-         <a href="{% url 'login_view' %}">Trail guide app
+         <a href="{% url 'login_view' %}">Trailguide app
              login</a></p>
         {% endif %}
 </div>

@@ -11,10 +11,15 @@ def register_view(request):
     if form.is_valid():
         username = form.cleaned_data.get("username")
         email = form.cleaned_data.get("email")
+        first_name = form.cleaned_data.get("first_name")
+        last_name = form.cleaned_data.get("last_name")
         password = form.cleaned_data.get("password1")
         password2 = form.cleaned_data.get("password2")
         try:
             user = User.objects.create_user(username, email, password)
+            user.last_name = last_name
+            user.first_name = first_name
+            user.save()
         except:
             user = None
         if user != None:
