@@ -6,7 +6,7 @@ from phone_field import PhoneField
 
 class trailGuideLeader(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,related_name="trailguide",blank=True, null = True)
-    phone_number = PhoneField(help_text='Contact phone number',blank=True, null = True)
+    phone_number = PhoneField(blank=True, null = True)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):

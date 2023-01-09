@@ -1,9 +1,9 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.shortcuts import render, redirect
-
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 # Create your views here.
-from .forms import LoginForm, RegisterForm
-
+from .forms import LoginForm, RegisterForm, UserUpdateForm, trailGuideProfile
 User = get_user_model()
 
 def register_view(request):
@@ -52,3 +52,31 @@ def logout_view(request):
     logout(request)
     # request.user == Anon User
     return redirect("login_view")
+
+@login_required
+def profile_view(request):
+
+
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = trailGuideProfile(request.POST, instance=request.user.trailguide)        
+        if u_form.is_valid() and p_form.is_valid():
+            print("success")
+            u_form.save()
+            p_form.save()
+            messages.success(request, 'Profile details updated.')
+            return redirect('profile_view')
+        else:
+            print("error")
+            messages.error(request, "Problem with data entered in the form")
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = trailGuideProfile(instance=request.user.trailguide)
+    
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form, 
+    }
+
+    return render(request,'auth_user/profile.html', context)

@@ -5,13 +5,37 @@ from leaderSignUp.models import trailGuideLeader
 non_allowed_usernames = ['abc']
 # check for unique email & username
 
+User = get_user_model()
 
 class trailGuideProfile(forms.ModelForm):
     class Meta:
         model = trailGuideLeader
         fields = ['phone_number']
 
-User = get_user_model()
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username','email', 'first_name', 'last_name']
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={
+        "class": "form-control"
+    }))
+    first_name = forms.CharField(widget=forms.TextInput(
+        attrs={
+        "class": "form-control"
+    }))
+
+    last_name = forms.CharField(widget=forms.TextInput(
+        attrs={
+        "class": "form-control"
+    }))
+
+    email = forms.EmailField(widget=forms.TextInput(
+        attrs={
+        "class": "form-control"
+    }))
+
 
 class RegisterForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(
@@ -89,3 +113,4 @@ class LoginForm(forms.Form):
         if qs.count() != 1:
             raise forms.ValidationError("This is an invalid user.")
         return username
+
