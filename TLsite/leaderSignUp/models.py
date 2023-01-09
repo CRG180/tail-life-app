@@ -74,5 +74,7 @@ class subEvent(models.Model):
     def __str__(self):
         return f"{self.group} {self.event_parent}"
 
-class Sample(models.Model):
+class eventDocument(models.Model):
+    event_parent = models.ForeignKey(event, on_delete=models.CASCADE)
     attachment = models.FileField()
+    document_name = models.CharField(max_length=200,blank=True, null = True)
