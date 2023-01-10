@@ -3,8 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from leaderSignUp.models import event
-from leaderSignUp.models import subEvent
+from leaderSignUp.models import event, subEvent, eventDocument
 from leaderSignUp.forms import leaderSignUp
 from leaderSignUp.forms import createNewEvent, createNewSubEventLineFormset
 
@@ -18,7 +17,10 @@ def indexView(request):
 def eventView(request, event_id ):
     event_master = get_object_or_404(event,pk = event_id)
     sub_event = subEvent.objects.filter(event_parent = event_id).order_by("group")
-    context = {'event': event_master , 'sub_event': sub_event}
+    attachments = eventDocument.objects.filter(event_parent = event_id)
+    context = {'event': event_master , 'sub_event': sub_event,
+     'attachments': attachments}
+    print(attachments)
     return render(request, 'leaderSignUp/events.html',context )
 
 @login_required

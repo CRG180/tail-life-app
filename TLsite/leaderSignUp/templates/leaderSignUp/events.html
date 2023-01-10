@@ -18,14 +18,19 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
+                    <h3>Attachments</h3>
+                    {% for doc in attachments %}
+                    <p><a href="/static/media/{{ doc.attachment }}" target="_blank">{{ doc.document_name}}</a></p>
+                    {% endfor %}
+                    <h3>Wooodlands sections </h3>
                     <p>Select a wooodlands group to volunteer as a trailguide or assistant trailguide.
-                        During the event revist this link to sumbit attendance.
+                        During the event revist the link to sumbit attendance.
                     </p>
                     <!-- Post preview-->
                     {% for event in sub_event %}
                     <div class="post-preview">
                         <a href="{% url 'subEvents' event.id %}">
-                        <h3> {{ event }} </h3>
+                        <h3> {{ event.group }} </h3>
                         <p><b>Trailguide Leader:</b> {{ event.primary_leader}}</p>
                         <p><b>Assistant Trailguide Leader:</b> {{ event.alternate_leader}}</p>
                     </div>
