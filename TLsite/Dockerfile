@@ -1,6 +1,6 @@
 FROM python:3.8-alpine3.13
 ENV PYTHONUNBUFFERED 1
-COPY .. /TLsite
+COPY . /TLsite
 COPY requirements.txt /requirements.txt
 COPY ./scripts /scripts
 
