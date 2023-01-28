@@ -2,6 +2,8 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
+from datetime import timedelta
 from django.db.models import Q
 from leaderSignUp.models import event, subEvent, eventDocument
 from leaderSignUp.forms import leaderSignUp
@@ -10,7 +12,8 @@ from leaderSignUp.forms import createNewEvent, createNewSubEventLineFormset
 
 @login_required
 def indexView(request):
-    event_list = event.objects.all()
+    current_time = datetime.now() - timedelta(days=1)
+    event_list = event.objects.filter(Q(start__gt = current_time)).order_by('start')
     return render(request, 'leaderSignUp/index.html', {'event_list': event_list})
     
 @login_required
